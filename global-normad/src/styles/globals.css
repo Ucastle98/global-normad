@@ -1,0 +1,10 @@
+/* Tailwind 지시문 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 디자인 토큰 */
+@import "./variables.css";
+
+/* 선택: 전역 초기화 */
+html, body, #__next { height: 100%; }
