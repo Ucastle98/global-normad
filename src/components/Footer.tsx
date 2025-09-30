@@ -7,7 +7,7 @@ import Image from "next/image";
 import iconFacebook from "@/assets/img/icon_facebook.png";
 import iconInstagram from "@/assets/img/icon_instagram.png";
 import iconYoutube from "@/assets/img/icon_youtube.png";
-import iconX from "@/assets/img/icon_x.png";
+import iconX from "@/assets/img/icon_X.png";
 
 export default function Footer() {
   return (
