@@ -4,8 +4,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import Logo from "@/assets/img/Logo.png";
-import BellIcon from "@/assets/img/icon_bell.png";
+import Logo from "@/assets/icon/Logo.svg";
+import BellIcon from "@/assets/icon/icon_bell.svg";
 
 type GNBProps = {
   /** 로그인 여부 */

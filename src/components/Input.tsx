@@ -5,8 +5,8 @@ import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 
 // ✅ 기본 아이콘(정적 import)
-import eyeOffDefault from "@/assets/img/active=off.png";
-import eyeOnDefault from "@/assets/img/active=on.png";
+import eyeOffDefault from "@/assets/icon/active=off.svg";
+import eyeOnDefault from "@/assets/icon/active=on.svg";
 
 type InputStatus = "default" | "success" | "error";
 

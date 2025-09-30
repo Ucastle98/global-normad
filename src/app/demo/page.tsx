@@ -17,9 +17,9 @@ import StarRatingInput from "@/components/StarRatingInput";
 import CheckItem from "@/components/CheckItem";
 
 // ✅ 정적 import (src/assets/img 안에 실제 파일 존재해야 함)
-import iconSearch from "@/assets/img/icon_search.png";
-import eyeOff from "@/assets/img/active=off.png";
-import eyeOn from "@/assets/img/active=on.png";
+import iconSearch from "@/assets/icon/icon_search.svg";
+import eyeOff from "@/assets/icon/active=off.svg";
+import eyeOn from "@/assets/icon/active=on.svg";
 
 export default function DemoPage() {
   const [text, setText] = useState("");

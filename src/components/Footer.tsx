@@ -4,10 +4,10 @@ import React from "react";
 import Image from "next/image";
 
 // ✅ 정적 import (src/assets/img 안에 있어야 함)
-import iconFacebook from "@/assets/img/icon_facebook.png";
-import iconInstagram from "@/assets/img/icon_instagram.png";
-import iconYoutube from "@/assets/img/icon_youtube.png";
-import iconX from "@/assets/img/icon_X.png";
+import iconFacebook from "@/assets/icon/icon_facbook.svg";
+import iconInstagram from "@/assets/icon/icon_instagram.svg";
+import iconYoutube from "@/assets/icon/icon_youtube.svg";
+import iconX from "@/assets/icon/icon_X.svg";
 
 export default function Footer() {
   return (

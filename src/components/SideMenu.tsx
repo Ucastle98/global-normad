@@ -7,10 +7,10 @@ import clsx from "clsx";
 
 import avatarPng from "@/assets/img/default profile.png";
 import editPng from "@/assets/img/edit_button.png";
-import iconUser from "@/assets/img/icon_user.png";
-import iconList from "@/assets/img/icon_list.png";
-import iconSetting from "@/assets/img/icon_setting.png";
-import iconCalendar from "@/assets/img/icon_calendar.png";
+import iconUser from "@/assets/icon/icon_user.svg";
+import iconList from "@/assets/icon/icon_list.svg";
+import iconSetting from "@/assets/icon/icon_setting.svg";
+import iconCalendar from "@/assets/icon/icon_calendar.svg";
 
 type MenuItem = { href?: string; label: string; icon: StaticImageData | string };
 

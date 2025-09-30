@@ -5,9 +5,9 @@ import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 
 // ✅ 아이콘 파일 (세진 경로 그대로)
-import iconGoogle from "@/assets/img/icon_google.png";
-import iconArt from "@/assets/img/icon_art.png";
-import iconUser from "@/assets/img/icon_user.png";
+import iconGoogle from "@/assets/icon/icon_google.svg";
+import iconArt from "@/assets/icon/icon_art.svg";
+import iconUser from "@/assets/icon/icon_user.svg";
 
 export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "outline";
 export type ButtonSize = "lg" | "md" | "sm";
