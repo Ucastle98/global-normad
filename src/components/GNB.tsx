@@ -4,7 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import Logo from "@/assets/icon/Logo.svg";
+import Logo from "@/assets/img/logo_gnb.svg";
 import BellIcon from "@/assets/icon/icon_bell.svg";
 
 type GNBProps = {
@@ -20,12 +20,7 @@ export default function GNB({ isLoggedIn = false, unread = 0 }: GNBProps) {
       <div className="mx-auto w-full max-w-[1200px] h-14 px-6 flex items-center justify-between">
         {/* Left: Logo (이미 텍스트 포함된 이미지) */}
         <Link href="/" className="flex items-center no-underline">
-          <Image
-            src={Logo}
-            alt="GlobalNomad 로고"
-            height={28}
-            priority
-          />
+          <Image src={Logo} alt="GlobalNomad 로고" height={28} priority />
         </Link>
 
         {/* Right */}
@@ -66,10 +61,16 @@ export default function GNB({ isLoggedIn = false, unread = 0 }: GNBProps) {
         ) : (
           // ----- 게스트 상태 -----
           <nav className="flex items-center gap-6">
-            <Link href="/login" className="typo-14-m text-gray-900 hover:text-primary">
+            <Link
+              href="/login"
+              className="typo-14-m text-gray-900 hover:text-primary"
+            >
               로그인
             </Link>
-            <Link href="/signup" className="typo-14-m text-gray-900 hover:text-primary">
+            <Link
+              href="/signup"
+              className="typo-14-m text-gray-900 hover:text-primary"
+            >
               회원가입
             </Link>
           </nav>

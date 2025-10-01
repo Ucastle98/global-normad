@@ -18,8 +18,8 @@ import CheckItem from "@/components/CheckItem";
 
 // ✅ 정적 import (src/assets/img 안에 실제 파일 존재해야 함)
 import iconSearch from "@/assets/icon/icon_search.svg";
-import eyeOff from "@/assets/icon/active=off.svg";
-import eyeOn from "@/assets/icon/active=on.svg";
+import eyeOff from "@/assets/icon/icon_eye_off.svg";
+import eyeOn from "@/assets/icon/icon_eye_on.svg";
 
 export default function DemoPage() {
   const [text, setText] = useState("");
@@ -81,8 +81,16 @@ export default function DemoPage() {
 
                 {/* 아이콘이 포함된 버튼 */}
                 <div className="flex flex-wrap gap-3 mb-8">
-                  <Button label="Google 로그인" variant="ghost" leftIcon="google" />
-                  <Button label="Google 로그인" variant="primary" leftIcon="google" />
+                  <Button
+                    label="Google 로그인"
+                    variant="ghost"
+                    leftIcon="google"
+                  />
+                  <Button
+                    label="Google 로그인"
+                    variant="primary"
+                    leftIcon="google"
+                  />
                   <Button label="필터" variant="outline" leftIcon="art" />
                   <Button label="사용자" variant="ghost" leftIcon="user" />
                 </div>
@@ -92,7 +100,11 @@ export default function DemoPage() {
                   <FilterChip label="가격" />
                   <FilterChip label="필터" selected />
                   <LabelChip label="라벨" />
-                  <Button iconOnly="art" variant="outline" aria-label="필터 열기" />
+                  <Button
+                    iconOnly="art"
+                    variant="outline"
+                    aria-label="필터 열기"
+                  />
                   <Button iconOnly="user" variant="ghost" aria-label="사용자" />
                 </div>
               </section>
@@ -170,14 +182,21 @@ export default function DemoPage() {
                 <h2 className="typo-18-b mb-4">Cards</h2>
                 <div className="flex flex-wrap gap-6">
                   <Card className="w-64">
-                    <Card.Image src="https://placehold.co/300x200" alt="열기구" />
+                    <Card.Image
+                      src="https://placehold.co/300x200"
+                      alt="열기구"
+                    />
                     <Card.Content>
                       <div className="flex items-center justify-between">
-                        <span className="typo-12-m text-text-secondary">탐방</span>
+                        <span className="typo-12-m text-text-secondary">
+                          탐방
+                        </span>
                         <Tag variant="info" size="sm" label="D+3" />
                       </div>
                       <h3 className="typo-16-b mt-1">열기구 체험</h3>
-                      <p className="typo-12-m text-text-secondary mt-1">1시간 · 30km</p>
+                      <p className="typo-12-m text-text-secondary mt-1">
+                        1시간 · 30km
+                      </p>
                     </Card.Content>
                     <Card.Price price="₩35,000~" sub="세금 포함" />
                   </Card>
@@ -186,7 +205,9 @@ export default function DemoPage() {
                     <Card.Image src="https://placehold.co/300x200" alt="샘플" />
                     <Card.Content>
                       <h3 className="typo-16-b">샘플 카드</h3>
-                      <p className="typo-12-m text-text-secondary mt-1">설명 텍스트</p>
+                      <p className="typo-12-m text-text-secondary mt-1">
+                        설명 텍스트
+                      </p>
                     </Card.Content>
                     <Card.Price price="₩29,000" />
                   </Card>

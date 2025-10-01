@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 
 // ✅ 정적 import (src/assets/img 안에 있어야 함)
-import iconFacebook from "@/assets/icon/icon_facbook.svg";
+import iconFacebook from "@/assets/icon/icon_facebook.svg";
 import iconInstagram from "@/assets/icon/icon_instagram.svg";
 import iconYoutube from "@/assets/icon/icon_youtube.svg";
 import iconX from "@/assets/icon/icon_X.svg";
@@ -25,13 +25,25 @@ export default function Footer() {
 
         {/* 오른쪽 아이콘 */}
         <div className="flex items-center gap-4">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image src={iconFacebook} alt="Facebook" width={20} height={20} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image src={iconInstagram} alt="Instagram" width={20} height={20} />
           </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image src={iconYoutube} alt="YouTube" width={20} height={20} />
           </a>
           <a href="https://x.com" target="_blank" rel="noopener noreferrer">
