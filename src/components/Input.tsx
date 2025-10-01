@@ -5,8 +5,8 @@ import clsx from "clsx";
 import Image, { StaticImageData } from "next/image";
 
 // ✅ 기본 아이콘(정적 import)
-import eyeOffDefault from "@/assets/icon/active=off.svg";
-import eyeOnDefault from "@/assets/icon/active=on.svg";
+import eyeOffDefault from "@/assets/icon/icon_eye_off.svg";
+import eyeOnDefault from "@/assets/icon/icon_eye_on.svg";
 
 type InputStatus = "default" | "success" | "error";
 
@@ -48,13 +48,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
     leadingIconSrc = null,
     leadingIconAlt = "",
     showPasswordToggle = false,
-    eyeOffSrc = eyeOffDefault,     // ✅ 기본값 제공
-    eyeOnSrc = eyeOnDefault,       // ✅ 기본값 제공
+    eyeOffSrc = eyeOffDefault, // ✅ 기본값 제공
+    eyeOnSrc = eyeOnDefault, // ✅ 기본값 제공
     className,
     type = "text",
     ...domProps
   },
-  ref
+  ref,
 ) {
   const [show, setShow] = React.useState(false);
 
@@ -68,7 +68,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
   const leadingSrc = isValidSrc(leadingIconSrc) ? leadingIconSrc : null;
   const hasLeading = !!(leadingIcon || leadingSrc);
 
-  const canShowEye = showPasswordToggle && (type === "password" || type === "text");
+  const canShowEye =
+    showPasswordToggle && (type === "password" || type === "text");
   const eyeSrc = show ? eyeOnSrc : eyeOffSrc;
   const hasEye = canShowEye && isValidSrc(eyeSrc);
 
@@ -105,7 +106,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
             hasLeading && "pl-11",
             "typo-14-m text-text-primary placeholder:text-text-secondary/60",
             "border focus:outline-none focus:ring-2 transition",
-            statusRing[status]
+            statusRing[status],
           )}
           {...domProps}
         />
@@ -114,7 +115,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
         {hasEye && (
           <button
             type="button"
-            onClick={() => setShow(v => !v)}
+            onClick={() => setShow((v) => !v)}
             className="absolute inset-y-0 right-0 flex items-center justify-center w-11"
             aria-label={show ? "비밀번호 숨기기" : "비밀번호 보기"}
           >
@@ -138,8 +139,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input(
             status === "error"
               ? "text-red-500"
               : status === "success"
-              ? "text-emerald-600"
-              : "text-text-secondary"
+                ? "text-emerald-600"
+                : "text-text-secondary",
           )}
         >
           {helpText}

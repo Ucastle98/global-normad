@@ -5,14 +5,18 @@ import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import clsx from "clsx";
 
-import avatarPng from "@/assets/img/default profile.png";
+import avatarPng from "@/assets/img/profile_default.png";
 import editPng from "@/assets/img/edit_button.png";
 import iconUser from "@/assets/icon/icon_user.svg";
 import iconList from "@/assets/icon/icon_list.svg";
 import iconSetting from "@/assets/icon/icon_setting.svg";
 import iconCalendar from "@/assets/icon/icon_calendar.svg";
 
-type MenuItem = { href?: string; label: string; icon: StaticImageData | string };
+type MenuItem = {
+  href?: string;
+  label: string;
+  icon: StaticImageData | string;
+};
 
 interface SideMenuProps {
   className?: string;
@@ -44,13 +48,19 @@ export default function SideMenu({
         "w-full rounded-2xl border border-gray-100 bg-white",
         "shadow-[0_2px_10px_rgba(20,20,43,0.06)]",
         isLg ? "p-6" : "p-4",
-        className
+        className,
       )}
     >
       {/* 프로필 영역 */}
-      <div className={clsx("relative mx-auto", isLg ? "mb-6" : "mb-4", avatarBox)}>
+      <div
+        className={clsx("relative mx-auto", isLg ? "mb-6" : "mb-4", avatarBox)}
+      >
         {/* 원형 배경 + 아바타 */}
-        <div className={clsx("w-full h-full rounded-full bg-[#E9F4FF] overflow-hidden")}>
+        <div
+          className={clsx(
+            "w-full h-full rounded-full bg-[#E9F4FF] overflow-hidden",
+          )}
+        >
           {/* 시안처럼 중앙에 아이콘 크기 여유 있게 */}
           <div className="w-full h-full flex items-center justify-center">
             <Image
@@ -75,7 +85,9 @@ export default function SideMenu({
             "rounded-full bg-[#B7BAC2] text-white",
             "flex items-center justify-center",
             "ring-2 ring-white shadow-sm",
-            onEditClick ? "hover:brightness-105 active:brightness-95" : "cursor-default"
+            onEditClick
+              ? "hover:brightness-105 active:brightness-95"
+              : "cursor-default",
           )}
         >
           <Image
@@ -97,7 +109,7 @@ export default function SideMenu({
             className={clsx(
               "group flex items-center rounded-xl",
               isLg ? "h-11 px-3" : "h-10 px-3",
-              "hover:bg-gray-50 transition-colors"
+              "hover:bg-gray-50 transition-colors",
             )}
           >
             <Image
