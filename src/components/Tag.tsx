@@ -71,7 +71,6 @@ export default function Tag({ status, variant, className, size = "md", children 
     const key = status ?? variant;
     const ok = isStatus ? !!STYLE_STATUS[status as BookingStatus] : !!STYLE_VARIANT[variant as GenericTag];
     if (!ok) {
-      // eslint-disable-next-line no-console
       console.warn(`[Tag] unknown key "${key}". Falling back to ${isStatus ? "canceled" : "default"}.`);
     }
   }
