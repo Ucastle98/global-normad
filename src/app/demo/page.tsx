@@ -49,7 +49,7 @@ export default function DemoPage() {
               <SideMenu />
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-4">
                 <h3 className="typo-16-b mb-3">별점</h3>
-                <StarRatingInput value={rating} onChange={setRating} />
+                <StarRatingInput initialRating={rating} onChange={setRating} />
               </section>
 
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-4">
