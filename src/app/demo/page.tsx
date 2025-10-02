@@ -159,11 +159,11 @@ export default function DemoPage() {
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-6">
                 <h2 className="typo-18-b mb-4">Tags</h2>
                 <div className="flex flex-wrap gap-2">
-                  <Tag variant="default" label="기본" />
-                  <Tag variant="info" label="안내" />
-                  <Tag variant="success" label="성공" />
-                  <Tag variant="warning" label="경고" />
-                  <Tag variant="error" label="오류" />
+                  <Tag variant="default">기본</Tag>
+                  <Tag variant="info">안내</Tag>
+                  <Tag variant="success">성공</Tag>
+                  <Tag variant="warning">경고</Tag>
+                  <Tag variant="error">에러</Tag>
                 </div>
 
                 <h3 className="typo-16-b mt-6 mb-3">예약 상태</h3>
@@ -190,8 +190,8 @@ export default function DemoPage() {
                         <span className="typo-12-m text-text-secondary">
                           탐방
                         </span>
-                        <Tag variant="info" size="sm" label="D+3" />
-                      </div>
+                          <Tag variant="info" size="sm">D+3</Tag>
+                        </div>
                       <h3 className="typo-16-b mt-1">열기구 체험</h3>
                       <p className="typo-12-m text-text-secondary mt-1">
                         1시간 · 30km
@@ -221,8 +221,7 @@ export default function DemoPage() {
                     thumbnail="https://placehold.co/96"
                     title="열기구 투어"
                     subtitle="성인 2명 · 09:00~13:30"
-                    status="success"
-                    statusText="예약완료"
+                    status="confirmed"
                     price="₩ 35,000~"
                     priceSub="세금 포함"
                     ctaLabel="자세히"
@@ -231,8 +230,7 @@ export default function DemoPage() {
                     thumbnail="https://placehold.co/96"
                     title="사막 지프투어"
                     subtitle="성인 1명 · 10:00~12:00"
-                    status="warning"
-                    statusText="확인요청"
+                    status="pending"
                     price="₩ 49,000"
                     priceSub="현장결제"
                     ctaLabel="확인"

@@ -11,4 +11,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = { args: {} };
+export const Primary: Story = {
+  args: {
+    className: "w-64",
+    children: "카드 내용입니다",
+  },
+};
