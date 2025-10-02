@@ -1,32 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Calendar, { CalendarProps } from "react-calendar";
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import api from "@/utils/api";
+
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import Tag from "@/components/Tag";
 import emptyState from "@/assets/img/empty_state.png";
+import api from "@/api/axios"; // ✅ axios 인스턴스 사용
 
 /** 내 체험 요약 */
-interface MyActivity {
-  id: number;
-  title: string;
-}
+type MyActivity = { id: number; title: string };
 
 /** 월별 예약 현황 */
-interface ReservationDashboard {
+type ReservationDashboard = {
   date: string; // YYYY-MM-DD
   reservations: {
     completed: number;
     confirmed: number;
     pending: number;
   };
-}
+};
 
-/** YYYY-MM-DD - 로컬 기준 */
+/** YYYY-MM-DD (로컬 기준) */
 function toYMD(date: Date) {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
@@ -40,50 +38,48 @@ export default function CalendarPage() {
   const [dashboard, setDashboard] = useState<ReservationDashboard[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // ✅ 현재 달(캘린더가 보여주는 달)
+  const [activeDate, setActiveDate] = useState<Date>(new Date());
+
   // ✅ 내 체험 리스트 조회
   useEffect(() => {
-    const fetchActivities = async () => {
+    async function fetchActivities() {
       try {
-        // fetch-wrapper: res가 곧 T
         const res = await api.get<MyActivity[]>("/my-activities");
-        setActivities(res);
-        // 첫 로딩 시 기본 선택 (있다면 첫 번째)
-        if (res.length > 0 && !selectedActivity) {
-          setSelectedActivity(res[0].id);
+        setActivities(res.data);                 // ✅ axios는 .data
+        if (res.data.length > 0 && !selectedActivity) {
+          setSelectedActivity(res.data[0].id);   // 첫 항목 자동 선택
         }
       } catch (err) {
         console.error("체험 리스트 조회 실패:", err);
       } finally {
         setLoading(false);
       }
-    };
-    fetchActivities();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // ✅ 선택한 체험의 (현재 보이는 달) 예약 현황 조회
-  const [activeDate, setActiveDate] = useState<Date>(new Date());
-
-  async function loadDashboard(activityId: number, baseDate: Date) {
-    try {
-      const year = baseDate.getFullYear();
-      const month = baseDate.getMonth() + 1;
-      const res = await api.get<ReservationDashboard[]>(
-        `/my-activities/${activityId}/reservation-dashboard?year=${year}&month=${month}`,
-      );
-      setDashboard(res);
-    } catch (err) {
-      console.error("예약 현황 조회 실패:", err);
     }
-  }
+    fetchActivities();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // ✅ 선택한 체험의 월별 예약 현황 조회
   useEffect(() => {
-    if (!selectedActivity) return;
-    loadDashboard(selectedActivity, activeDate);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    async function fetchDashboard() {
+      if (!selectedActivity) return;
+      try {
+        const year = activeDate.getFullYear();
+        const month = activeDate.getMonth() + 1;
+        const res = await api.get<ReservationDashboard[]>(
+          `/my-activities/${selectedActivity}/reservation-dashboard?year=${year}&month=${month}`,
+        );
+        setDashboard(res.data); // ✅ axios는 .data
+      } catch (err) {
+        console.error("예약 현황 조회 실패:", err);
+      }
+    }
+    fetchDashboard();
   }, [selectedActivity, activeDate]);
 
-  if (loading) return <p className="typo-14-m text-gray-600">로딩 중...</p>;
+  if (loading) {
+    return <p className="typo-14-m text-gray-600">로딩 중...</p>;
+  }
 
   /** ✅ 체험이 하나도 없을 때 - Empty state */
   if (activities.length === 0) {
@@ -100,7 +96,7 @@ export default function CalendarPage() {
 
   return (
     <div className="space-y-6">
-      {/* ✅ 내 체험 선택 셀렉트 (체험이 있을 때만 보임) */}
+      {/* ✅ 내 체험 선택 (체험이 있을 때만 보임) */}
       <select
         className="w-full rounded-2xl border border-border-default px-4 py-3 typo-14-m text-text-primary"
         value={selectedActivity ?? ""}
@@ -120,18 +116,16 @@ export default function CalendarPage() {
                      [&_.react-calendar__tile]:py-3
                      [&_.react-calendar__navigation__label]:typo-16-b
                      [&_.react-calendar__month-view__weekdays__weekday]:typo-12-m"
-          // 월 전환 시 대시보드 다시 로드
-          onActiveStartDateChange={({ activeStartDate }) => {
+          // 월 전환 시 대시보드 다시 로드 (암묵적 any 방지용으로 인라인 타입 지정)
+          onActiveStartDateChange={({ activeStartDate }: { activeStartDate: Date | null }) => {
             if (activeStartDate) setActiveDate(activeStartDate);
           }}
-          // 날짜 셀 커스텀 컨텐츠
-          tileContent={({ date }) => {
-            const key = toYMD(date);
-            const day = dashboard.find((d) => d.date === key);
+          // 날짜 셀 커스텀 (암묵적 any 방지)
+          tileContent={({ date }: { date: Date }) => {
+            const day = dashboard.find((d) => d.date === toYMD(date));
             if (!day) return null;
 
             const { pending, confirmed, completed } = day.reservations;
-
             return (
               <div className="mt-1 flex flex-col gap-1">
                 {pending > 0 && (
@@ -152,12 +146,12 @@ export default function CalendarPage() {
               </div>
             );
           }}
-          // 오늘 강조, 주말 색 등 더 꾸미고 싶으면 tileClassName도 사용
-          tileClassName={({ date, view }) => {
+          // 오늘 강조/일요일 표시 (암묵적 any 방지)
+          tileClassName={({ date, view }: { date: Date; view: "month" | "year" | "decade" | "century" }) => {
             const classes: string[] = [];
             if (view === "month") {
               if (toYMD(date) === toYMD(new Date())) classes.push("ring-1 ring-primary rounded-md");
-              if (date.getDay() === 0) classes.push("text-red-500"); // 일요일
+              if (date.getDay() === 0) classes.push("text-red-500");
             }
             return classes.join(" ");
           }}

@@ -16,10 +16,8 @@ export default function BookingsPage() {
   useEffect(() => {
     const fetchReservations = async () => {
       try {
-        const res = await api.get<MyReservationsResponse>(
-          "/my-reservations"
-        );
-        setReservations(res.reservations); // ✅ API 데이터 상태에 저장
+        const res = await api.get<MyReservationsResponse>("/my-reservations");
+        setReservations(res.data.reservations); // ✅ data 안에서 꺼내야 함
       } catch (err) {
         console.error(err);
       } finally {
@@ -42,8 +40,7 @@ export default function BookingsPage() {
           thumbnail={r.activity.bannerImageUrl}
           title={r.activity.title}
           subtitle={`${r.date} · ${r.startTime} - ${r.endTime}`}
-          status="success" // TODO: status 매핑 필요 (예: pending → "info")
-          statusText={r.status} // TODO: 한글 변환 필요
+          status={r.status} // ✅ API 상태값 그대로 전달
           price={`₩${r.totalPrice.toLocaleString()}`}
           ctaLabel="자세히"
           onClickCTA={() => alert(`예약 ID: ${r.id}`)}
@@ -51,18 +48,18 @@ export default function BookingsPage() {
       ))}
     </div>
   ) : (
-  <section className="flex flex-col items-center justify-center text-center py-20">
-    <Image
-      src={logoAuth}
-      alt="예약 없음"
-      width={122}
-      height={122}
-      className="mb-4"
-    />
-    <p className="typo-16-m text-gray-600 mb-[30px]">아직 예약한 체험이 없어요</p>
-    <Link href="/activities">
-      <Button label="둘러보기" variant="primary" className="w-[182px] h-[54px]" />
-    </Link>
-  </section>
+    <section className="flex flex-col items-center justify-center text-center py-20">
+      <Image
+        src={logoAuth}
+        alt="예약 없음"
+        width={122}
+        height={122}
+        className="mb-4"
+      />
+      <p className="typo-16-m text-gray-600 mb-[30px]">아직 예약한 체험이 없어요</p>
+      <Link href="/activities">
+        <Button label="둘러보기" variant="primary" className="w-[182px] h-[54px]" />
+      </Link>
+    </section>
   );
 }
