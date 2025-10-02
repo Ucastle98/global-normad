@@ -46,11 +46,10 @@ export default function DemoPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[320px_minmax(0,1fr)] gap-10">
             {/* LEFT */}
             <aside className="space-y-6">
-              <SideMenu title="샘플 메뉴" />
-
+              <SideMenu />
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-4">
                 <h3 className="typo-16-b mb-3">별점</h3>
-                <StarRatingInput value={rating} onChange={setRating} />
+                <StarRatingInput initialRating={rating} onChange={setRating} />
               </section>
 
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-4">
