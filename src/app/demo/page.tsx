@@ -159,11 +159,11 @@ export default function DemoPage() {
               <section className="rounded-2xl border border-border-default bg-white dark:bg-gray-900 p-6">
                 <h2 className="typo-18-b mb-4">Tags</h2>
                 <div className="flex flex-wrap gap-2">
-                  <Tag variant="default" label="기본" />
-                  <Tag variant="info" label="안내" />
-                  <Tag variant="success" label="성공" />
-                  <Tag variant="warning" label="경고" />
-                  <Tag variant="error" label="오류" />
+                  <Tag variant="default">기본</Tag>
+                  <Tag variant="info">안내</Tag>
+                  <Tag variant="success">성공</Tag>
+                  <Tag variant="warning">경고</Tag>
+                  <Tag variant="error">에러</Tag>
                 </div>
 
                 <h3 className="typo-16-b mt-6 mb-3">예약 상태</h3>
