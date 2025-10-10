@@ -1,11 +1,13 @@
 import React from "react";
-import Link from "next/link";
 import GNB from "@/components/GNB";
 import Footer from "@/components/Footer";
 import SideMenu from "@/components/SideMenu";
 
-
-export default function BookingsLayout({ children }: { children: React.ReactNode }) {
+export default function BookingsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div>
       <GNB isLoggedIn unread={3} />
@@ -21,13 +23,11 @@ export default function BookingsLayout({ children }: { children: React.ReactNode
             {/* RIGHT */}
             <div className="space-y-8">
               {/* 헤더 */}
-              <header className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <h1 className="typo-18-b">예약 내역</h1>
-                  <p className="mt-2 typo-14-m text-gray-500">
-                    예약 내역을 확인하고 변경 및 취소할 수 있습니다.
-                  </p>
-                </div>
+              <header className="flex flex-col gap-2">
+                <h1 className="typo-18-b">예약 내역</h1>
+                <p className="typo-14-m text-gray-500">
+                  예약내역 변경 및 취소할 수 있습니다.
+                </p>
               </header>
 
               {/* 페이지 콘텐츠 */}
