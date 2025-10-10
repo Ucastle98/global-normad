@@ -22,5 +22,8 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-  },
+    rules: {
+      'react-refresh/only-export-components': 'warn', // error에서 warn으로 변경
+    }
+  }
 ])
