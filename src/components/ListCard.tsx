@@ -3,31 +3,55 @@ import clsx from "clsx";
 import Tag from "@/components/Tag";
 import Button from "@/components/Button";
 
+export type ReservationStatus =
+  | "pending"
+  | "confirmed"
+  | "declined"
+  | "canceled"
+  | "completed";
+
 export interface ListCardProps {
   thumbnail: string;
   title: string;
-  subtitle?: string;      // 예: 인원/시간 등
-  status?: "success" | "warning" | "info" | "error" | "default";
-  statusText?: string;    // 예: 예약완료, 확인요청
-  price: string;          // "₩ 35,000~"
-  priceSub?: string;      // "세금 포함" 등
-  ctaLabel?: string;      // 버튼 텍스트
+  subtitle?: string; // 예: 인원/시간 등
+  status?: ReservationStatus; // API 상태값 그대로 받음
+  price: string; // "₩ 35,000~"
+  priceSub?: string; // "세금 포함" 등
+  ctaLabel?: string; // 버튼 텍스트
   className?: string;
   onClickCTA?: () => void;
+}
+
+function mapReservationStatus(apiStatus: ReservationStatus | undefined) {
+  switch (apiStatus) {
+    case "pending":
+      return { variant: "warning" as const, text: "확인 요청" };
+    case "confirmed":
+      return { variant: "success" as const, text: "예약 완료" };
+    case "declined":
+      return { variant: "error" as const, text: "거절됨" };
+    case "canceled":
+      return { variant: "default" as const, text: "취소됨" };
+    case "completed":
+      return { variant: "info" as const, text: "이용 완료" };
+    default:
+      return { variant: "default" as const, text: "" };
+  }
 }
 
 export default function ListCard({
   thumbnail,
   title,
   subtitle,
-  status = "default",
-  statusText,
+  status,
   price,
   priceSub,
   ctaLabel = "자세히",
   className,
   onClickCTA,
 }: ListCardProps) {
+  const { variant, text } = mapReservationStatus(status);
+
   return (
     <div
       className={clsx(
@@ -44,8 +68,7 @@ export default function ListCard({
 
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          {statusText && <Tag variant={status}>{statusText}</Tag>}
-          {/* 시간/라벨 같은 보조정보를 subtitle 앞에 따로 둘 수도 있음 */}
+          {text && <Tag variant={variant}>{text}</Tag>}
         </div>
 
         <div className="mt-1 flex items-center justify-between gap-4">

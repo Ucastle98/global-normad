@@ -7,23 +7,61 @@ const meta = {
   parameters: { layout: 'padded' }, // or 'fullscreen'
   args: {
     // ✅ 컴포넌트에서 요구하는 필수 값들을 “실제처럼” 채우기
-    thumbnailSrc: 'https://placehold.co/96x96',   // or /img/sample.png
+    thumbnail: 'https://placehold.co/96x96',   // thumbnailSrc → thumbnail로 수정
     title: '연가구 투어',
     subtitle: '성인 2명 · 09:00–13:30',
-    priceText: '₩ 35,000~',
-    badge: '예약완료',              // status/badge 비슷한 prop이 있으면
-    actionText: '자세히',           // 버튼 라벨 prop이 있으면
+    price: '₩ 35,000~',              // priceText → price
+    priceSub: '세금 포함',           // 추가 가격 정보
+    status: 'confirmed',             // badge → status (ReservationStatus 타입)
+    ctaLabel: '자세히',              // actionText → ctaLabel
+    onClickCTA: () => console.log('CTA 클릭'),
   },
 } satisfies Meta<typeof ListCard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  args: {
+    thumbnail: 'https://placehold.co/96x96',
+    title: '연가구 투어',
+    subtitle: '성인 2명 · 09:00–13:30',
+    price: '₩ 35,000~',
+    status: 'confirmed',
+    ctaLabel: '자세히'
+  }
+};
+
+export const Pending: Story = {
+  args: {
+    thumbnail: 'https://placehold.co/96x96',
+    title: '열기구 체험',
+    subtitle: '성인 4명 · 14:00–18:00',
+    price: '₩ 85,000',
+    priceSub: '세금 포함',
+    status: 'pending',
+    ctaLabel: '확인하기'
+  }
+};
+
+export const Canceled: Story = {
+  args: {
+    thumbnail: 'https://placehold.co/96x96',
+    title: '서핑 레슨',
+    price: '₩ 45,000',
+    status: 'canceled'
+  }
+};
 
 export const WithActionHandler: Story = {
   args: {
-    onClickAction: () => alert('자세히 클릭'),
+    thumbnail: 'https://placehold.co/96x96',
+    title: '연가구 투어',
+    subtitle: '성인 2명 · 09:00–13:30',
+    price: '₩ 35,000~',
+    status: 'confirmed',
+    ctaLabel: '자세히',
+    onClickCTA: () => alert('자세히 클릭'),  // onClickAction → onClickCTA
   },
 };
 
