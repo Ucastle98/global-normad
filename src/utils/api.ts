@@ -1,9 +1,5 @@
 // src/utils/api.ts
-import axios, {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosResponse,
-} from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
 /**
  * ✅ API 기본 URL 설정
@@ -43,7 +39,7 @@ apiClient.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 /**
@@ -62,7 +58,7 @@ apiClient.interceptors.response.use(
 
     console.error("API Error:", error.response || error.message);
     return Promise.reject(error);
-  }
+  },
 );
 
 /**
@@ -73,30 +69,26 @@ apiClient.interceptors.response.use(
  */
 const api = {
   /** GET 요청 */
-  get: async <T>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<T> => apiClient.get(url, config),
+  get: async <T>(url: string, config?: AxiosRequestConfig): Promise<T> =>
+    apiClient.get(url, config),
 
   /** POST 요청 */
   post: async <T, B = unknown>(
     url: string,
     body?: B,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<T> => apiClient.post(url, body, config),
 
   /** PATCH 요청 */
   patch: async <T, B = unknown>(
     url: string,
     body?: B,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<T> => apiClient.patch(url, body, config),
 
   /** DELETE 요청 */
-  delete: async <T>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<T> => apiClient.delete(url, config),
+  delete: async <T>(url: string, config?: AxiosRequestConfig): Promise<T> =>
+    apiClient.delete(url, config),
 };
 
 export default api;

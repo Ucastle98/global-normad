@@ -19,7 +19,7 @@ interface SignupResponse {
 }
 
 const signup = async (data: SignupRequest): Promise<SignupResponse> => {
-  return api.post<SignupResponse, SignupRequest>("/auth/signup", data);
+  return api.post<SignupResponse, SignupRequest>("/users", data);
 };
 
 // 이메일 유효성 검사
@@ -50,9 +50,24 @@ export default function Singup() {
       const res = await signup({ email, nickname, password });
       console.log("회원가입 성공");
       //TODO: 성공 후 이동 -> 로그인 페이지router.push ?
+
+      // 로그인 요청
+      const loginReq = await api.post<{
+        accessToken: string;
+        refreshToken: string;
+        user: {
+          id: number;
+          email: string;
+          nickname: string;
+        };
+      }>("/auth/login", { email, password });
+
+      localStorage.setItem("accessToken", loginReq.accessToken);
+      localStorage.setItem("refreshToken", loginReq.refreshToken);
+      console.log("로그인 성공, 토큰 저장 성공");
     } catch (error) {
       console.log("회원가입 실패", error);
-      //TODO: 에러 메시지 모달 보여주기
+      //TODO: 중복 이메일 에러 메시지 모달 보여주기
     }
   };
 
