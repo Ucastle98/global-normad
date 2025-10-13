@@ -29,7 +29,12 @@ export default function Profile() {
           placeholder="전유성"
           className="mb-6"
         />
-        <Input label="이메일" value={email} className="mb-6" />
+        <Input
+          label="이메일"
+          value={email}
+          className="mb-6"
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <Input
           label="비밀번호"
           value={password}

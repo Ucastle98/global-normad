@@ -4,7 +4,6 @@
 import React, { useState } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-import logoAuth from "@/assets/img/logo_auth.svg";
 
 const wrapper = "min-h-screen flex justify-center items-center";
 
