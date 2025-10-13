@@ -4,8 +4,23 @@
 import React, { useState } from "react";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import api from "@/utils/api";
 
 const wrapper = "min-h-screen flex justify-center items-center";
+
+interface SignupRequest {
+  email: string;
+  nickname: string;
+  password: string;
+}
+
+interface SignupResponse {
+  message: string;
+}
+
+const signup = async (data: SignupRequest): Promise<SignupResponse> => {
+  return api.post<SignupResponse, SignupRequest>("/auth/signup", data);
+};
 
 // 이메일 유효성 검사
 function isValidEmail(email: string): boolean {
@@ -27,10 +42,18 @@ export default function Singup() {
     password.trim().length >= 8 &&
     password === checkPassword;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValid) return;
-    console.log("폼 제출 성공");
+
+    try {
+      const res = await signup({ email, nickname, password });
+      console.log("회원가입 성공");
+      //TODO: 성공 후 이동 -> 로그인 페이지router.push ?
+    } catch (error) {
+      console.log("회원가입 실패", error);
+      //TODO: 에러 메시지 모달 보여주기
+    }
   };
 
   return (
@@ -38,7 +61,7 @@ export default function Singup() {
       <div className="w-[640px]">
         <p className="mb-12 mt-12">이미지</p>
         {/* <img src={logoAuth} alt="로고" width={120} height={40} /> */}
-        <form>
+        <form onSubmit={handleSubmit}>
           <Input
             label="이메일"
             placeholder="이메일을 입력해주세요."
@@ -95,16 +118,15 @@ export default function Singup() {
                 : undefined
             }
           />
+          <Button
+            type="submit"
+            size="lg"
+            label="회원가입"
+            fullWidth
+            disabled={!isValid}
+            variant={!isValid ? "secondary" : "primary"}
+          />
         </form>
-        <Button
-          type="submit"
-          size="lg"
-          label="회원가입"
-          fullWidth
-          disabled={!isValid}
-          variant={!isValid ? "secondary" : "primary"}
-          onClick={handleSubmit}
-        />
       </div>
     </div>
   );
