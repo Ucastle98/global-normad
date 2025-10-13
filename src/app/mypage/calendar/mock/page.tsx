@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
 import emptyState from "@/assets/img/empty_state.png";
-import CalendarBoard from "@/components/calendarBoard/CalendarBoard"; // ✅ 공용 캘린더 불러오기
+import CalendarBoard from "@/app/mypage/calendar/components/calendarBoard/CalendarBoard"; // ✅ 공용 캘린더 불러오기
 
 import {
   mockActivities,

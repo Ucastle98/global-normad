@@ -6,7 +6,7 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import emptyState from "@/assets/img/empty_state.png";
 import api from "@/utils/api";
-import CalendarBoard from "@/components/calendarBoard/CalendarBoard"; // ✅ 공용 달력 컴포넌트 import
+import CalendarBoard from "@/app/mypage/calendar/components/calendarBoard/CalendarBoard"; // ✅ 공용 달력 컴포넌트 import
 
 /** 내 체험 요약 타입 */
 type MyActivity = {
