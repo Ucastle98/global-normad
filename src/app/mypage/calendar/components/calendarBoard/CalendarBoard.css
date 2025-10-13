@@ -1,0 +1,143 @@
+/* ===== 카드 래퍼: 가로 100% 사용 ===== */
+.calendar-card {
+  width: 100%;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(20, 20, 43, 0.06);
+}
+
+/* ===== react-calendar 기본값 정리 ===== */
+.calendar-board.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  font-family: inherit !important;
+  color: var(--color-text-primary);
+}
+
+/* 상단 내비게이션 */
+.calendar-board .react-calendar__navigation {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 16px !important;
+}
+.calendar-board .react-calendar__navigation__label {
+  font-weight: 700;
+  font-size: 18px;
+}
+.calendar-board .react-calendar__navigation button {
+  background: transparent !important;
+  border-radius: 8px !important;
+}
+.calendar-board .react-calendar__navigation button:hover {
+  background: #f9fafb !important;
+}
+
+/* 요일 헤더 */
+.calendar-board .react-calendar__month-view__weekdays {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  text-align: center;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 날짜 그리드: flex → grid 로 강제 */
+.calendar-board .react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 날짜 셀: 정사각형 + 상대배치 */
+.calendar-board .react-calendar__tile {
+  position: relative !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 12px !important;
+  padding: 6px 6px 4px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  transition: background-color .15s ease;
+  color: inherit !important; /* 숫자 가독성 유지 */
+}
+
+/* hover / focus: 배경만 살짝, 문자색은 그대로 */
+.calendar-board .react-calendar__tile:enabled:hover,
+.calendar-board .react-calendar__tile:enabled:focus {
+  background: #f9fafb !important;
+  color: inherit !important;
+}
+
+/* active(선택됨): 텍스트가 흰색으로 바뀌지 않도록 고정 */
+.calendar-board .react-calendar__tile--active,
+.calendar-board .react-calendar__tile--active:enabled:hover,
+.calendar-board .react-calendar__tile--active:enabled:focus {
+  background: rgba(0, 133, 255, 0.08) !important;
+  border: 1px solid rgba(0, 133, 255, 0.35) !important;
+  color: inherit !important;
+  outline: none !important;
+}
+
+/* 이웃 월 날짜 흐리게 */
+.calendar-board .react-calendar__month-view__days__day--neighboringMonth {
+  color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* 주말 색상 (스크린샷처럼 일/토 강조) */
+.calendar-board .react-calendar__month-view__days__day--weekend {
+  color: #ef4444 !important; /* red-500 */
+}
+
+/* 숫자(기본 abbr) 밑줄 제거 */
+.calendar-board .react-calendar__tile abbr {
+  text-decoration: none !important;
+}
+
+/* ===== 오늘 날짜 표시 색상 커스터마이징 ===== */
+.calendar-board .react-calendar__tile--now {
+  background: rgba(0, 133, 255, 0.1) !important; /* 💙 연한 파랑톤 */
+  border: 1px solid rgba(0, 133, 255, 0.25) !important;
+  color: inherit !important; /* 숫자색 유지 */
+}
+
+/* hover/focus 시에도 동일하게 유지 */
+.calendar-board .react-calendar__tile--now:enabled:hover,
+.calendar-board .react-calendar__tile--now:enabled:focus {
+  background: rgba(0, 133, 255, 0.15) !important;
+  border-color: rgba(0, 133, 255, 0.35) !important;
+  color: inherit !important;
+}
+
+/* ===== 빨간 점(예약 있는 날만 표시) ===== */
+.calendar-board .cb-dot {
+  position: absolute;
+  top: 2px;              /* 숫자 기준 위로 약간 띄움 */
+  right: 30px;            /* 숫자의 오른쪽 위로 이동 */
+  width: 6px;
+  height: 6px;
+  background: #ef4444;   /* red-500 */
+  border-radius: 9999px;
+}
+
+/* ===== 상태 태그 영역: 숫자 아래에 수직 스택 ===== */
+.calendar-board .cb-tags {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+/* 반응형 패딩(모바일 전체폭) */
+@media (max-width: 640px) {
+  .calendar-card { padding: 16px; }
+}
