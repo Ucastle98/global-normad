@@ -22,7 +22,7 @@ export default function MockCalendarPage() {
   const [dashboard] = useState<ReservationDashboard[]>(
     mockReservationDashboard
   );
-  const [activeDate, setActiveDate] = useState<Date>(new Date());
+  const [, setActiveDate] = useState<Date>(new Date());
 
   /** 등록된 체험이 없을 때 */
   if (activities.length === 0) {

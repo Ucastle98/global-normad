@@ -5,7 +5,7 @@ import ListCard from "@/components/ListCard";
 import Button from "@/components/Button";
 import Image from "next/image";
 import logoAuth from "@/assets/img/empty_state.png";
-import { mockReservations, type MockReservation } from "./mockReservations";
+import { mockReservations } from "./mockReservations";
 
 type ReservationFilter = "all" | "pending" | "confirmed" | "canceled" | "completed";
 
@@ -85,6 +85,7 @@ export default function MockBookingsPage() {
                 subtitle={`${r.date} · ${r.startTime} - ${r.endTime}`}
                 status={r.status}
                 price={`₩${r.totalPrice.toLocaleString()}`}
+                ctaLabel="자세히"
               />
             </div>
 
