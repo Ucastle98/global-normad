@@ -48,7 +48,7 @@ export default function Singup() {
 
     try {
       const res = await signup({ email, nickname, password });
-      console.log("회원가입 성공");
+      console.log("회원가입 성공", res.message);
       //TODO: 성공 후 이동 -> 로그인 페이지router.push ?
 
       // 로그인 요청
